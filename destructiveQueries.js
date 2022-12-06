@@ -7,8 +7,18 @@ const pool = new Pool({
   port: 5432,
 });
 
-const insertConfigurationData = (request, response) => {
-  let query = `INSERT INTO configJSON(json, name) VALUES (${request.params.jsonData}) ${request.params.name})`;
+const insertNewConfiguration = (request, response) => {
+  let query = `INSERT INTO configjson (json, name) VALUES ${request.body.jsonData}, ${request.body.name}`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send("error connecting to database");
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+const updateConfigurationData = (request, response) => {
+  let query = `UPDATE configjson SET json = ${request.body.jsonData} WHERE name = ${request.body.name})`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send("error connecting to database");
@@ -19,5 +29,6 @@ const insertConfigurationData = (request, response) => {
 };
 
 module.exports = {
-  insertConfigurationData,
+  updateConfigurationData,
+  insertNewConfiguration,
 };

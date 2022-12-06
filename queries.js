@@ -7,8 +7,19 @@ const pool = new Pool({
   port: 5432,
 });
 
+const getAllConfigurations = (request, response) => {
+  let query = `SELECT * FROM configjson`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send("error connecting to database");
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
 const getConfigurationData = (request, response) => {
-  let query = `SELECT * FROM configJSON WHERE name = ${request.params.name}`;
+  let query = `SELECT * FROM configjson WHERE name = ${request.params.name}`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send("error connecting to database");
@@ -20,4 +31,5 @@ const getConfigurationData = (request, response) => {
 
 module.exports = {
   getConfigurationData,
+  getAllConfigurations,
 };
