@@ -31,8 +31,8 @@ app.get("/getConfigJSON/:name", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
 
 //destructiveQueries
-app.post("/updateConfiguration", destructive.updateConfigurationData);
-app.post("/insertNewConfiguration", destructive.insertNewConfiguration);
+app.post("/updateConfig", destructive.updateConfigurationData);
+app.post("/insertNewConfig", destructive.insertNewConfiguration);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

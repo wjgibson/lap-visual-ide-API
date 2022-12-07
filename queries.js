@@ -19,7 +19,7 @@ const getAllConfigurations = (request, response) => {
 };
 
 const getConfigurationData = (request, response) => {
-  let query = `SELECT * FROM configjson WHERE name = ${request.params.name}`;
+  let query = `SELECT * FROM configjson WHERE name = '${request.params.name}'`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send("error connecting to database");
