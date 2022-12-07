@@ -27,8 +27,9 @@ app.get("/initTest", (request, response) => {
   response.json({ info: "Request Received" });
 });
 //get queries
-app.get("/getConfigJSON/:name", queries.getConfigurationData);
+app.get("/getConfigJSON:cid", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
+app.get("/getAllConfigsTest", queries.getAllConfigurationsTest);
 
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);

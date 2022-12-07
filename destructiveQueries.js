@@ -8,23 +8,28 @@ const pool = new Pool({
 });
 
 const insertNewConfiguration = (request, response) => {
-  let query = `INSERT INTO configjson (json, name) VALUES ('${request.body.jsonData}', '${request.body.name}')`;
+  console.log(request.body);
+  let query = `INSERT INTO configjson (json, name) VALUES ('${JSON.stringify(
+    request.body.jsonData
+  )}', '${request.body.name}')`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
-      response.status(400).send("error connecting to database");
-      throw error;
+      console.log(error);
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
   });
 };
 const updateConfigurationData = (request, response) => {
-  let query = `UPDATE configjson SET json = '${request.body.jsonData}' WHERE name = '${request.body.name})'`;
+  let query = `UPDATE configjson SET json = '${request.body.jsonData}' WHERE cid = '${request.body.cid}'`;
   pool.query(query, (error, results) => {
     if (error) {
-      response.status(400).send("error connecting to database");
-      throw error;
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
   });
 };
 
