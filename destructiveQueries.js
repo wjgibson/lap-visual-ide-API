@@ -23,7 +23,9 @@ const insertNewConfiguration = (request, response) => {
   });
 };
 const updateConfigurationData = (request, response) => {
-  let query = `UPDATE configjson SET json = '${request.body.jsonData}' WHERE cid = '${request.body.cid}'`;
+  let query = `UPDATE configjson SET json = '${JSON.stringify(
+    request.body.jsonData
+  )}' WHERE cid = '${request.body.cid}'`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);

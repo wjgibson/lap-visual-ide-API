@@ -19,7 +19,7 @@ const getAllConfigurations = (request, response) => {
 };
 
 const getAllConfigurationsTest = (request, response) => {
-  let query = `SELECT * FROM configjson`;
+  let query = `SELECT * FROM testing`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -41,7 +41,7 @@ const getConfigurationData = (request, response) => {
 };
 
 const getConfigurationDataTest = (request, response) => {
-  let query = `SELECT * FROM configjson WHERE cid = '${request.params.cid}'`;
+  let query = `SELECT * FROM testing WHERE cid = '${request.params.cid}'`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
