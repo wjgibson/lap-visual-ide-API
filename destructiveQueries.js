@@ -1,3 +1,5 @@
+const { request } = require("express");
+
 const Pool = require("pg").Pool;
 const pool = new Pool({
   user: "postgres",
@@ -22,6 +24,8 @@ const insertNewConfiguration = (request, response) => {
     }
   });
 };
+
+
 const updateConfigurationData = (request, response) => {
   let query = `UPDATE configjson SET json = '${request.body.jsonData}' WHERE cid = '${request.body.cid}'`;
   pool.query(query, (error, results) => {
@@ -32,6 +36,10 @@ const updateConfigurationData = (request, response) => {
     }
   });
 };
+
+
+
+
 
 module.exports = {
   updateConfigurationData,
