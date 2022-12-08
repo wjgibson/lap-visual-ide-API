@@ -35,7 +35,37 @@ const updateConfigurationData = (request, response) => {
   });
 };
 
+const insertNewConfigurationTest = (request, response) => {
+  console.log(request.body);
+  let query = `INSERT INTO testing (json, name) VALUES ('${JSON.stringify(
+    request.body.jsonData
+  )}', '${request.body.name}')`;
+  console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      console.log(error);
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+const updateConfigurationDataTest = (request, response) => {
+  let query = `UPDATE testing SET json = '${JSON.stringify(
+    request.body.jsonData
+  )}' WHERE cid = '${request.body.cid}'`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
 module.exports = {
   updateConfigurationData,
   insertNewConfiguration,
+  updateConfigurationDataTest,
+  insertNewConfigurationTest,
 };

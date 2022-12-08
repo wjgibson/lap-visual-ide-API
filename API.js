@@ -30,10 +30,13 @@ app.get("/initTest", (request, response) => {
 app.get("/getConfigJSON:cid", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
 app.get("/getAllConfigsTest", queries.getAllConfigurationsTest);
+app.get("/getConfigurationDataTest", queries.getConfigurationDataTest);
 
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);
 app.post("/insertNewConfig", destructive.insertNewConfiguration);
+app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
+app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
