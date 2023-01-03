@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
-const queries = require("./queries");
-const destructive = require("./destructiveQueries");
+const queries = require("./non-destructiveCalls");
+const destructive = require("./destructiveCalls");
 
 app.use(bodyParser.json());
 
