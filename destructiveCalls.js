@@ -1,6 +1,6 @@
-const queries = require("./queryFile");
+const queries = require('./queryFile');
 
-//Actual queries
+// Actual queries
 const insertNewConfiguration = (request, response) => {
   queries.insertNewConfiguration(request, response);
 };
@@ -8,7 +8,7 @@ const updateConfigurationData = (request, response) => {
   queries.updateConfigurationData(request, response);
 };
 
-//Test queries
+// Test queries
 const insertNewConfigurationTest = (request, response) => {
   queries.insertNewConfigurationTest(request, response);
 };
