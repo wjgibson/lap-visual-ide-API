@@ -35,6 +35,7 @@ app.get("/getConfigurationDataTest", queries.getConfigurationDataTest);
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);
 app.post("/insertNewConfig", destructive.insertNewConfiguration);
+app.post("/createNewConfig", destructive.createNewConfiguration);
 app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
 app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
 

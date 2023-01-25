@@ -1,4 +1,4 @@
-const queries = require("./queryFile");
+const queries = require("./reactflowQueries");
 
 //Actual queries
 const getAllConfigurations = (request, response) => {
