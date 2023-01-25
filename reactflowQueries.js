@@ -65,7 +65,7 @@ const updateConfigurationDataTest = (request, response) => {
 };
 
 const getAllConfigurations = (request, response) => {
-  let query = `SELECT * FROM reactflow.reactflowdata`;
+  let query = `SELECT * FROM setup.configurations`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
