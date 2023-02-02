@@ -74,6 +74,17 @@ const getAllConfigurations = (request, response) => {
   });
 };
 
+const getSeqTypes = (request, response) => {
+  let query = `SELECT * FROM seqtypes`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
 const getAllConfigurationsTest = (request, response) => {
   let query = `SELECT * FROM testing`;
   pool.query(query, (error, results) => {
@@ -112,6 +123,7 @@ module.exports = {
   getAllConfigurations,
   getConfigurationDataTest,
   getAllConfigurationsTest,
+  getSeqTypes,
   updateConfigurationData,
   insertNewConfiguration,
   updateConfigurationDataTest,
