@@ -31,11 +31,12 @@ app.get("/getConfigJSON:cid", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
 app.get("/getAllConfigsTest", queries.getAllConfigurationsTest);
 app.get("/getConfigurationDataTest", queries.getConfigurationDataTest);
-app.get("/getSeqTypes", queries.getSeqTypes);
+app.get("/getAllSequenceTypes:cid", queries.getAllSeqTypes);
 
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);
 app.post("/insertNewConfig", destructive.insertNewConfiguration);
+app.post("/createNewConfig", destructive.createNewConfiguration);
 app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
 app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
 

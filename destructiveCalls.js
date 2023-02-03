@@ -1,19 +1,24 @@
-const queries = require("./queryFile");
+const reactflowQueries = require("./reactflowQueries");
+const lapQueries = require("./lapQueries");
 
 //Actual queries
 const insertNewConfiguration = (request, response) => {
-  queries.insertNewConfiguration(request, response);
+  reactflowQueries.insertNewConfiguration(request, response);
 };
 const updateConfigurationData = (request, response) => {
-  queries.updateConfigurationData(request, response);
+  reactflowQueries.updateConfigurationData(request, response);
+};
+
+const createNewConfiguration = (request, response) => {
+  lapQueries.createNewConfiguration(request, response);
 };
 
 //Test queries
 const insertNewConfigurationTest = (request, response) => {
-  queries.insertNewConfigurationTest(request, response);
+  reactflowQueries.insertNewConfigurationTest(request, response);
 };
 const updateConfigurationDataTest = (request, response) => {
-  queries.updateConfigurationDataTest(request, response);
+  reactflowQueries.updateConfigurationDataTest(request, response);
 };
 
 module.exports = {
@@ -21,4 +26,5 @@ module.exports = {
   insertNewConfiguration,
   updateConfigurationDataTest,
   insertNewConfigurationTest,
+  createNewConfiguration,
 };
