@@ -1,6 +1,6 @@
-const queries = require("./queryFile");
+const queries = require('./queryFile');
 
-//Actual queries
+// Actual queries
 const getAllConfigurations = (request, response) => {
   queries.getAllConfigurations(request, response);
 };
@@ -8,7 +8,7 @@ const getAllConfigurations = (request, response) => {
 const getConfigurationData = (request, response) => {
   queries.getConfigurationData(request, response);
 };
-//Test queries
+// Test queries
 const getAllConfigurationsTest = (request, response) => {
   queries.getAllConfigurationsTest(request, response);
 };
