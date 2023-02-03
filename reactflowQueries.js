@@ -39,6 +39,7 @@ const updateConfigurationData = (request, response) => {
 
 const getConfigurationData = (request, response) => {
   let query = `SELECT * FROM reactflow.reactflowdata WHERE cid = '${request.params.cid}'`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -51,6 +52,18 @@ const getConfigurationData = (request, response) => {
 //Queries for lap specific data
 const getAllConfigurations = (request, response) => {
   let query = `SELECT * FROM setup.configurations`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const getAllSeqTypes = (request, response) => {
+  let query = `SELECT * FROM types.sequenceTypes WHERE configuuid = '${request.params.cid}'`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -125,6 +138,7 @@ const getConfigurationDataTest = (request, response) => {
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
+  getAllSeqTypes,
   getConfigurationDataTest,
   getAllConfigurationsTest,
   updateConfigurationData,

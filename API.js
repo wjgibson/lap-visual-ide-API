@@ -31,6 +31,7 @@ app.get("/getConfigJSON:cid", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
 app.get("/getAllConfigsTest", queries.getAllConfigurationsTest);
 app.get("/getConfigurationDataTest", queries.getConfigurationDataTest);
+app.get("/getAllSequenceTypes:cid", queries.getAllSeqTypes);
 
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);

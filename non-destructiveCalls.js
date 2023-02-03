@@ -5,6 +5,10 @@ const getAllConfigurations = (request, response) => {
   queries.getAllConfigurations(request, response);
 };
 
+const getAllSeqTypes = (request, response) => {
+  queries.getAllSeqTypes(request, response);
+};
+
 const getConfigurationData = (request, response) => {
   queries.getConfigurationData(request, response);
 };
@@ -22,4 +26,5 @@ module.exports = {
   getAllConfigurations,
   getConfigurationDataTest,
   getAllConfigurationsTest,
+  getAllSeqTypes,
 };
