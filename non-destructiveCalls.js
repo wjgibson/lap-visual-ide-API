@@ -1,14 +1,22 @@
-const queries = require('./queryFile');
+const queries = require("./reactflowQueries");
 
 // Actual queries
 const getAllConfigurations = (request, response) => {
   queries.getAllConfigurations(request, response);
 };
 
+const getAllSeqTypes = (request, response) => {
+  queries.getAllSeqTypes(request, response);
+};
+
 const getConfigurationData = (request, response) => {
   queries.getConfigurationData(request, response);
 };
-// Test queries
+
+const getSeqTypes = (request, response) => {
+  queries.getSeqTypes(request, response);
+};
+//Test queries
 const getAllConfigurationsTest = (request, response) => {
   queries.getAllConfigurationsTest(request, response);
 };
@@ -20,6 +28,8 @@ const getConfigurationDataTest = (request, response) => {
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
+  getSeqTypes,
   getConfigurationDataTest,
   getAllConfigurationsTest,
+  getAllSeqTypes,
 };
