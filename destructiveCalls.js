@@ -28,7 +28,7 @@ const updateConfigurationDataTest = (request, response) => {
   reactflowQueries.updateConfigurationDataTest(request, response);
 };
 const deleteConfigTest = (request, response) => {
-  queries.deleteConfigTest(request, response);
+  reactflowQueries.deleteConfigTest(request, response);
 };
 
 module.exports = {
