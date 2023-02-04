@@ -17,7 +17,7 @@ const insertSequences = (request, response) => {
   reactflowQueries.insertSequences(request, response);
 };
 const deleteConfig = (request, response) => {
-  queries.deleteConfig(request, response);
+  reactflowQueries.deleteConfig(request, response);
 };
 
 // Test queries
