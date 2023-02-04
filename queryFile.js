@@ -107,6 +107,29 @@ const getConfigurationDataTest = (request, response) => {
   });
 };
 
+const deleteConfig = (request, response) => {
+  const { cid } = request.body
+  let query = `DELETE FROM configjson WHERE cid = '${cid}'`;
+  console.log(query)
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).send("Deletion Successful");
+    }
+  });
+}
+
+const deleteConfigTest = (request, response) => {
+  let query = `DELETE FROM testing WHERE cid = '${request.body.cid}'`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+}
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
@@ -116,4 +139,6 @@ module.exports = {
   insertNewConfiguration,
   updateConfigurationDataTest,
   insertNewConfigurationTest,
+  deleteConfig,
+  deleteConfigTest
 };

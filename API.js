@@ -37,6 +37,7 @@ app.post("/updateConfig", destructive.updateConfigurationData);
 app.post("/insertNewConfig", destructive.insertNewConfiguration);
 app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
 app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
+app.post("/deleteConfig", destructive.deleteConfig);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
