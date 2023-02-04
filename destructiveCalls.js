@@ -16,6 +16,9 @@ const createNewConfiguration = (request, response) => {
 const insertSequences = (request, response) => {
   reactflowQueries.insertSequences(request, response);
 };
+const deleteConfig = (request, response) => {
+  queries.deleteConfig(request, response);
+};
 
 // Test queries
 const insertNewConfigurationTest = (request, response) => {
@@ -23,6 +26,9 @@ const insertNewConfigurationTest = (request, response) => {
 };
 const updateConfigurationDataTest = (request, response) => {
   reactflowQueries.updateConfigurationDataTest(request, response);
+};
+const deleteConfigTest = (request, response) => {
+  queries.deleteConfigTest(request, response);
 };
 
 module.exports = {
@@ -32,4 +38,6 @@ module.exports = {
   insertNewConfigurationTest,
   createNewConfiguration,
   insertSequences,
+  deleteConfig,
+  deleteConfigTest,
 };
