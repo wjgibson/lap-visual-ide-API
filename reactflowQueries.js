@@ -9,14 +9,11 @@ const pool = new Pool({
 
 //Queries for reactflow specific data
 const insertNewConfiguration = (request, response) => {
-  console.log(request.body);
   let query = `INSERT INTO reactflow.reactflowdata (json, name) VALUES ('${JSON.stringify(
     request.body.jsonData
   )}', '${request.body.name}')`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
-      console.log(error);
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
@@ -39,7 +36,6 @@ const updateConfigurationData = (request, response) => {
 
 const getConfigurationData = (request, response) => {
   let query = `SELECT * FROM reactflow.reactflowdata WHERE cid = '${request.params.cid}'`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -63,7 +59,6 @@ const getAllConfigurations = (request, response) => {
 
 const getAllSeqTypes = (request, response) => {
   let query = `SELECT * FROM types.sequenceTypes WHERE configuuid = '${request.params.cid}'`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -73,11 +68,9 @@ const getAllSeqTypes = (request, response) => {
   });
 };
 
-const saveConfigurationForLAP = (request, response) => {
-  let query = `INSERT INTO setup."sequences"
-  (configuuid, "name", description, "type")
-  VALUES('${request.body.configId}', '${request.body.name}', '${request.body.description}', ${request.body.typeuuid});
-  `;
+const insertSequences = (request, response) => {
+  let query = `select setup.add_seq('${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}')`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -89,14 +82,11 @@ const saveConfigurationForLAP = (request, response) => {
 
 //Queries for testing
 const insertNewConfigurationTest = (request, response) => {
-  console.log(request.body);
   let query = `INSERT INTO reactflow.testing (json, name) VALUES ('${JSON.stringify(
     request.body.jsonData
   )}', '${request.body.name}')`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
-      console.log(error);
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
@@ -142,6 +132,7 @@ module.exports = {
   getConfigurationData,
   getAllConfigurations,
   getAllSeqTypes,
+  insertSequences,
   getConfigurationDataTest,
   getAllConfigurationsTest,
   updateConfigurationData,

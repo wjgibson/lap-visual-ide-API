@@ -13,6 +13,10 @@ const createNewConfiguration = (request, response) => {
   lapQueries.createNewConfiguration(request, response);
 };
 
+const insertSequences = (request, response) => {
+  reactflowQueries.insertSequences(request, response);
+};
+
 // Test queries
 const insertNewConfigurationTest = (request, response) => {
   reactflowQueries.insertNewConfigurationTest(request, response);
@@ -27,4 +31,5 @@ module.exports = {
   updateConfigurationDataTest,
   insertNewConfigurationTest,
   createNewConfiguration,
+  insertSequences,
 };
