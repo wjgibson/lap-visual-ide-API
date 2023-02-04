@@ -74,7 +74,10 @@ const getAllSeqTypes = (request, response) => {
 };
 
 const saveConfigurationForLAP = (request, response) => {
-  let query = `SELECT * FROM setup.configurations`;
+  let query = `INSERT INTO setup."sequences"
+  (configuuid, "name", description, "type")
+  VALUES('${request.body.configId}', '${request.body.name}', '${request.body.description}', ${request.body.typeuuid});
+  `;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
