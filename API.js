@@ -40,7 +40,7 @@ app.post("/insertNewConfig", destructive.insertNewConfiguration);
 app.post("/createNewConfig", destructive.createNewConfiguration);
 app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
 app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
-app.post("/insertSequences", destructive.insertSequences);
+app.post("/insertSequence", destructive.insertSequence);
 app.post("/deleteConfig", destructive.deleteConfig);
 
 app.listen(port, () => {

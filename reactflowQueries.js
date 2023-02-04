@@ -68,14 +68,28 @@ const getAllSeqTypes = (request, response) => {
   });
 };
 
-const insertSequences = (request, response) => {
-  let query = `select setup.add_seq('${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}')`;
+const insertSequence = (request, response) => {
+  let query = `select setup.add_seq('${request.body.sequenceId}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
   console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
+    }
+  });
+};
+
+const deleteConfig = (request, response) => {
+  const { cid } = request.body;
+  console.log(request.body.cid);
+  let query = `select setup.delete_config('${cid}');`;
+  console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).send(results.rows);
     }
   });
 };
@@ -128,19 +142,6 @@ const getConfigurationDataTest = (request, response) => {
   });
 };
 
-const deleteConfig = (request, response) => {
-  const { cid } = request.body
-  let query = `DELETE FROM configjson WHERE cid = '${cid}'`;
-  console.log(query)
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).send("Deletion Successful");
-    }
-  });
-}
-
 const deleteConfigTest = (request, response) => {
   let query = `DELETE FROM testing WHERE cid = '${request.body.cid}'`;
   pool.query(query, (error, results) => {
@@ -150,12 +151,12 @@ const deleteConfigTest = (request, response) => {
       response.status(200).json(results.rows);
     }
   });
-}
+};
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
   getAllSeqTypes,
-  insertSequences,
+  insertSequence,
   getConfigurationDataTest,
   getAllConfigurationsTest,
   updateConfigurationData,
@@ -163,5 +164,5 @@ module.exports = {
   updateConfigurationDataTest,
   insertNewConfigurationTest,
   deleteConfig,
-  deleteConfigTest
+  deleteConfigTest,
 };
