@@ -91,7 +91,6 @@ const insertSequence = (request, response) => {
 
 const insertSubSequence = (request, response) => {
   let query = `select setup.add_sub_seq('${request.body.parentNodeId}','${request.body.childNodeId}','${request.body.configuuid}');`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -103,7 +102,6 @@ const insertSubSequence = (request, response) => {
 
 const prepareSubSeqTable = (request, response) => {
   let query = `delete from sequenceconfig.subsequences where configuuid='${request.body.configuuid}';`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -115,7 +113,6 @@ const prepareSubSeqTable = (request, response) => {
 
 const prepareSequenceTable = (request, response) => {
   let query = `delete from setup.sequences where configuuid='${request.body.configuuid}';`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -127,7 +124,6 @@ const prepareSequenceTable = (request, response) => {
 
 const prepareControlModuleTable = (request, response) => {
   let query = `delete from setup.controlmodules where configuuid='${request.body.configuuid}';`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -151,7 +147,6 @@ const insertControlModule = (request, response) => {
 const deleteConfig = (request, response) => {
   const { cid } = request.body;
   let query = `select setup.delete_config('${cid}');`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
