@@ -16,6 +16,27 @@ const createNewConfiguration = (request, response) => {
 const insertSequence = (request, response) => {
   reactflowQueries.insertSequence(request, response);
 };
+
+const insertSubSequence = (request, response) => {
+  reactflowQueries.insertSubSequence(request, response);
+};
+
+const prepareSubSeqTable = (request, response) => {
+  reactflowQueries.prepareSubSeqTable(request, response);
+};
+
+const prepareSequenceTable = (request, response) => {
+  reactflowQueries.prepareSequenceTable(request, response);
+};
+
+const prepareControlModuleTable = (request, response) => {
+  reactflowQueries.prepareControlModuleTable(request, response);
+};
+
+const insertControlModule = (request, response) => {
+  reactflowQueries.insertControlModule(request, response);
+};
+
 const deleteConfig = (request, response) => {
   reactflowQueries.deleteConfig(request, response);
 };
@@ -40,4 +61,9 @@ module.exports = {
   insertSequence,
   deleteConfig,
   deleteConfigTest,
+  insertControlModule,
+  insertSubSequence,
+  prepareSubSeqTable,
+  prepareSequenceTable,
+  prepareControlModuleTable,
 };

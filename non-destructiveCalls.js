@@ -9,6 +9,10 @@ const getAllSeqTypes = (request, response) => {
   queries.getAllSeqTypes(request, response);
 };
 
+const getAllControlModuleTypes = (request, response) => {
+  queries.getAllControlModuleTypes(request, response);
+};
+
 const getConfigurationData = (request, response) => {
   queries.getConfigurationData(request, response);
 };
@@ -32,4 +36,5 @@ module.exports = {
   getConfigurationDataTest,
   getAllConfigurationsTest,
   getAllSeqTypes,
+  getAllControlModuleTypes,
 };

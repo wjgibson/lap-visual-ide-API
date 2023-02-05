@@ -33,6 +33,7 @@ app.get("/getAllConfigs", queries.getAllConfigurations);
 app.get("/getAllConfigsTest", queries.getAllConfigurationsTest);
 app.get("/getConfigurationDataTest", queries.getConfigurationDataTest);
 app.get("/getAllSequenceTypes:cid", queries.getAllSeqTypes);
+app.get("/getAllControlModuleTypes:cid", queries.getAllControlModuleTypes);
 
 //destructiveQueries
 app.post("/updateConfig", destructive.updateConfigurationData);
@@ -41,7 +42,12 @@ app.post("/createNewConfig", destructive.createNewConfiguration);
 app.post("/updateConfigTest", destructive.updateConfigurationDataTest);
 app.post("/insertNewConfigTest", destructive.insertNewConfigurationTest);
 app.post("/insertSequence", destructive.insertSequence);
+app.post("/insertSubSequence", destructive.insertSubSequence);
+app.post("/prepareSubSeqTable", destructive.prepareSubSeqTable);
+app.post("/prepareSequenceTable", destructive.prepareSequenceTable);
+app.post("/prepareControlModuleTable", destructive.prepareControlModuleTable);
 app.post("/deleteConfig", destructive.deleteConfig);
+app.post("/insertControlModule", destructive.insertControlModule);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

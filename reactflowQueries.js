@@ -67,10 +67,78 @@ const getAllSeqTypes = (request, response) => {
     }
   });
 };
+const getAllControlModuleTypes = (request, response) => {
+  let query = `SELECT * FROM types.controlmoduletypes WHERE configuuid = '${request.params.cid}'`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
 
 const insertSequence = (request, response) => {
-  let query = `select setup.add_seq('${request.body.sequenceId}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
+  let query = `select setup.add_seq('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const insertSubSequence = (request, response) => {
+  let query = `select setup.add_sub_seq('${request.body.parentNodeId}','${request.body.childNodeId}','${request.body.configuuid}');`;
   console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const prepareSubSeqTable = (request, response) => {
+  let query = `delete from sequenceconfig.subsequences where configuuid='${request.body.configuuid}';`;
+  console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const prepareSequenceTable = (request, response) => {
+  let query = `delete from setup.sequences where configuuid='${request.body.configuuid}';`;
+  console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const prepareControlModuleTable = (request, response) => {
+  let query = `delete from setup.controlmodules where configuuid='${request.body.configuuid}';`;
+  console.log(query);
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
+const insertControlModule = (request, response) => {
+  let query = `select setup.add_cm('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -82,7 +150,6 @@ const insertSequence = (request, response) => {
 
 const deleteConfig = (request, response) => {
   const { cid } = request.body;
-  console.log(request.body.cid);
   let query = `select setup.delete_config('${cid}');`;
   console.log(query);
   pool.query(query, (error, results) => {
@@ -157,6 +224,12 @@ module.exports = {
   getAllConfigurations,
   getAllSeqTypes,
   insertSequence,
+  prepareSubSeqTable,
+  prepareSequenceTable,
+  prepareControlModuleTable,
+  insertSubSequence,
+  insertControlModule,
+  getAllControlModuleTypes,
   getConfigurationDataTest,
   getAllConfigurationsTest,
   updateConfigurationData,
