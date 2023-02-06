@@ -80,6 +80,7 @@ const getAllControlModuleTypes = (request, response) => {
 
 const insertSequence = (request, response) => {
   let query = `select setup.add_seq('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -93,6 +94,7 @@ const insertSubSequence = (request, response) => {
   let query = `select setup.add_sub_seq('${request.body.parentNodeId}','${request.body.childNodeId}','${request.body.configuuid}');`;
   pool.query(query, (error, results) => {
     if (error) {
+      console.log(error);
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
