@@ -1,5 +1,4 @@
 const reactflowQueries = require("./reactflowQueries");
-const lapQueries = require("./lapQueries");
 
 // Actual queries
 const insertNewConfiguration = (request, response) => {
@@ -10,7 +9,7 @@ const updateConfigurationData = (request, response) => {
 };
 
 const createNewConfiguration = (request, response) => {
-  lapQueries.createNewConfiguration(request, response);
+  reactflowQueries.createNewConfiguration(request, response);
 };
 
 const insertSequence = (request, response) => {
