@@ -1,54 +1,54 @@
-const reactflowQueries = require("./reactflowQueries");
+const queries = require("./queries");
 
 // Actual queries
 const insertNewConfiguration = (request, response) => {
-  reactflowQueries.insertNewConfiguration(request, response);
+  queries.insertNewConfiguration(request, response);
 };
 const updateConfigurationData = (request, response) => {
-  reactflowQueries.updateConfigurationData(request, response);
+  queries.updateConfigurationData(request, response);
 };
 
 const createNewConfiguration = (request, response) => {
-  reactflowQueries.createNewConfiguration(request, response);
+  queries.createNewConfiguration(request, response);
 };
 
 const insertSequence = (request, response) => {
-  reactflowQueries.insertSequence(request, response);
+  queries.insertSequence(request, response);
 };
 
 const insertSubSequence = (request, response) => {
-  reactflowQueries.insertSubSequence(request, response);
+  queries.insertSubSequence(request, response);
 };
 
 const prepareSubSeqTable = (request, response) => {
-  reactflowQueries.prepareSubSeqTable(request, response);
+  queries.prepareSubSeqTable(request, response);
 };
 
 const prepareSequenceTable = (request, response) => {
-  reactflowQueries.prepareSequenceTable(request, response);
+  queries.prepareSequenceTable(request, response);
 };
 
 const prepareControlModuleTable = (request, response) => {
-  reactflowQueries.prepareControlModuleTable(request, response);
+  queries.prepareControlModuleTable(request, response);
 };
 
 const insertControlModule = (request, response) => {
-  reactflowQueries.insertControlModule(request, response);
+  queries.insertControlModule(request, response);
 };
 
 const deleteConfig = (request, response) => {
-  reactflowQueries.deleteConfig(request, response);
+  queries.deleteConfig(request, response);
 };
 
 // Test queries
 const insertNewConfigurationTest = (request, response) => {
-  reactflowQueries.insertNewConfigurationTest(request, response);
+  queries.insertNewConfigurationTest(request, response);
 };
 const updateConfigurationDataTest = (request, response) => {
-  reactflowQueries.updateConfigurationDataTest(request, response);
+  queries.updateConfigurationDataTest(request, response);
 };
 const deleteConfigTest = (request, response) => {
-  reactflowQueries.deleteConfigTest(request, response);
+  queries.deleteConfigTest(request, response);
 };
 
 module.exports = {
