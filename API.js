@@ -49,6 +49,9 @@ app.post("/prepareControlModuleTable", destructive.prepareControlModuleTable);
 app.post("/deleteConfig", destructive.deleteConfig);
 app.post("/insertControlModule", destructive.insertControlModule);
 
+//Non database queries
+app.get("/getDatabaseSettings", queries.getDatabaseSettings);
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });

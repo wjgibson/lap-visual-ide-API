@@ -1,10 +1,11 @@
 const Pool = require("pg").Pool;
+const settings = require("./settings.json");
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "LAP_PG",
-  password: "password",
-  port: 5432,
+  user: settings.user,
+  host: settings.host,
+  port: settings.port,
+  database: settings.database,
+  password: settings.password,
 });
 
 //Queries for reactflow specific data
@@ -153,6 +154,7 @@ const prepareControlModuleTable = (request, response) => {
 
 const insertControlModule = (request, response) => {
   let query = `select setup.add_cm('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
+  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -232,6 +234,12 @@ const deleteConfigTest = (request, response) => {
     }
   });
 };
+
+const getDatabaseSettings = (request, response) => {
+  let settings = require("./settings.json");
+  response.send(settings);
+};
+
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
@@ -252,4 +260,5 @@ module.exports = {
   insertNewConfigurationTest,
   deleteConfig,
   deleteConfigTest,
+  getDatabaseSettings,
 };

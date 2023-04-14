@@ -29,6 +29,10 @@ const getConfigurationDataTest = (request, response) => {
   queries.getConfigurationDataTest(request, response);
 };
 
+const getDatabaseSettings = (request, response) => {
+  queries.getDatabaseSettings(request, response);
+};
+
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
@@ -37,4 +41,5 @@ module.exports = {
   getAllConfigurationsTest,
   getAllSeqTypes,
   getAllControlModuleTypes,
+  getDatabaseSettings,
 };
