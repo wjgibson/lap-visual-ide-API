@@ -1,5 +1,6 @@
 const Pool = require("pg").Pool;
 const settings = require("./settings.json");
+const fs = require("fs");
 const pool = new Pool({
   user: settings.user,
   host: settings.host,
@@ -240,6 +241,11 @@ const getDatabaseSettings = (request, response) => {
   response.send(settings);
 };
 
+const updateDatabaseSettings = (request, response) => {
+  let newSettings = request.body;
+  fs.writeFileSync("./settings.json", JSON.stringify(newSettings));
+};
+
 module.exports = {
   getConfigurationData,
   getAllConfigurations,
@@ -261,4 +267,5 @@ module.exports = {
   deleteConfig,
   deleteConfigTest,
   getDatabaseSettings,
+  updateDatabaseSettings,
 };

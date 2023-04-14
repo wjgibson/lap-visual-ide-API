@@ -51,6 +51,10 @@ const deleteConfigTest = (request, response) => {
   queries.deleteConfigTest(request, response);
 };
 
+const updateDatabaseSettings = (request, response) => {
+  queries.updateDatabaseSettings(request, response);
+};
+
 module.exports = {
   updateConfigurationData,
   insertNewConfiguration,
@@ -65,4 +69,5 @@ module.exports = {
   prepareSubSeqTable,
   prepareSequenceTable,
   prepareControlModuleTable,
+  updateDatabaseSettings,
 };

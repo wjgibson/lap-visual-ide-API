@@ -51,6 +51,7 @@ app.post("/insertControlModule", destructive.insertControlModule);
 
 //Non database queries
 app.get("/getDatabaseSettings", queries.getDatabaseSettings);
+app.post("/updateDatabaseSettings", destructive.updateDatabaseSettings);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
