@@ -237,7 +237,7 @@ const deleteConfigTest = (request, response) => {
 };
 
 const getDatabaseSettings = (request, response) => {
-  let settings = require("./settings.json");
+  let settings = fs.readFileSync("./settings.json");
   response.send(settings);
 };
 
