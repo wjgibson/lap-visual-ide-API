@@ -6,6 +6,7 @@ const {
   getConfigurationData,
   getSeqTypes,
   getDatabaseSettings,
+  getLoginData,
 } = require("../../non-destructiveCalls");
 
 describe("non-destructiveCalls", () => {
@@ -66,6 +67,16 @@ describe("non-destructiveCalls", () => {
       queries.getDatabaseSettings = jest.fn();
       getDatabaseSettings(request, response);
       expect(queries.getDatabaseSettings).toHaveBeenCalled();
+    });
+  });
+
+  describe("getLoginData", () => {
+    it("should call queries.getLoginData", () => {
+      const request = {};
+      const response = {};
+      queries.getLoginData = jest.fn();
+      getLoginData(request, response);
+      expect(queries.getLoginData).toHaveBeenCalled();
     });
   });
 });

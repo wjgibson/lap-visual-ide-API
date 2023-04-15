@@ -9,7 +9,17 @@ const pool = new Pool({
   password: settings.password,
 });
 
-//Queries for reactflow specific data
+const getLoginData = (request, response) => {
+  let query = `SELECT password from login.users where username='${request.params.username}'`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
 const insertNewConfiguration = (request, response) => {
   let query = `INSERT INTO reactflow.reactflowdata (json, name) VALUES ('${JSON.stringify(
     request.body.jsonData
@@ -197,4 +207,5 @@ module.exports = {
   deleteConfig,
   getDatabaseSettings,
   updateDatabaseSettings,
+  getLoginData,
 };

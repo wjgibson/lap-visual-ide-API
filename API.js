@@ -28,6 +28,7 @@ app.get("/initTest", (request, response) => {
   response.json({ info: "Request Received" });
 });
 //get queries
+app.get("/getLoginData:username", queries.getLoginData);
 app.get("/getConfigJSON:cid", queries.getConfigurationData);
 app.get("/getAllConfigs", queries.getAllConfigurations);
 app.get("/getAllSequenceTypes:cid", queries.getAllSeqTypes);
