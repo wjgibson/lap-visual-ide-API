@@ -9,7 +9,17 @@ const pool = new Pool({
   password: settings.password,
 });
 
-//Queries for reactflow specific data
+const getLoginData = (request, response) => {
+  let query = `SELECT password from login.users where username='${request.params.username}'`;
+  pool.query(query, (error, results) => {
+    if (error) {
+      response.status(400).send(error);
+    } else {
+      response.status(200).json(results.rows);
+    }
+  });
+};
+
 const insertNewConfiguration = (request, response) => {
   let query = `INSERT INTO reactflow.reactflowdata (json, name) VALUES ('${JSON.stringify(
     request.body.jsonData
@@ -24,14 +34,11 @@ const insertNewConfiguration = (request, response) => {
 };
 
 const createNewConfiguration = (request, response) => {
-  console.log(request.body);
   let query = `select setup.add_config('14f38f2c-97c2-46af-b79a-07672eb2f94e','${
     request.body.name
   }', '${JSON.stringify(request.body.jsonData)}');`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
-      console.log(error);
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
@@ -63,7 +70,6 @@ const getConfigurationData = (request, response) => {
   });
 };
 
-//Queries for lap specific data
 const getAllConfigurations = (request, response) => {
   let query = `SELECT * FROM setup.configurations`;
   pool.query(query, (error, results) => {
@@ -98,7 +104,6 @@ const getAllControlModuleTypes = (request, response) => {
 
 const insertSequence = (request, response) => {
   let query = `select setup.add_seq('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -112,7 +117,6 @@ const insertSubSequence = (request, response) => {
   let query = `select setup.add_sub_seq('${request.body.parentNodeId}','${request.body.childNodeId}','${request.body.configuuid}');`;
   pool.query(query, (error, results) => {
     if (error) {
-      console.log(error);
       response.status(400).send(error);
     } else {
       response.status(200).json(results.rows);
@@ -155,7 +159,6 @@ const prepareControlModuleTable = (request, response) => {
 
 const insertControlModule = (request, response) => {
   let query = `select setup.add_cm('${request.body.Id}','${request.body.configId}','${request.body.name}','${request.body.description}','${request.body.typeuuid}');`;
-  console.log(query);
   pool.query(query, (error, results) => {
     if (error) {
       response.status(400).send(error);
@@ -173,65 +176,6 @@ const deleteConfig = (request, response) => {
       response.status(400).send(error);
     } else {
       response.status(200).send(results.rows);
-    }
-  });
-};
-
-//Queries for testing
-const insertNewConfigurationTest = (request, response) => {
-  let query = `INSERT INTO reactflow.testing (json, name) VALUES ('${JSON.stringify(
-    request.body.jsonData
-  )}', '${request.body.name}')`;
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).json(results.rows);
-    }
-  });
-};
-
-const updateConfigurationDataTest = (request, response) => {
-  let query = `UPDATE reactflow.testing SET json = '${JSON.stringify(
-    request.body.jsonData
-  )}' WHERE cid = '${request.body.cid}'`;
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).json(results.rows);
-    }
-  });
-};
-
-const getAllConfigurationsTest = (request, response) => {
-  let query = `SELECT * FROM reactflow.testing`;
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).json(results.rows);
-    }
-  });
-};
-const getConfigurationDataTest = (request, response) => {
-  let query = `SELECT * FROM reactflow.testing WHERE cid = '${request.params.cid}'`;
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).json(results.rows);
-    }
-  });
-};
-
-const deleteConfigTest = (request, response) => {
-  let query = `DELETE FROM testing WHERE cid = '${request.body.cid}'`;
-  pool.query(query, (error, results) => {
-    if (error) {
-      response.status(400).send(error);
-    } else {
-      response.status(200).json(results.rows);
     }
   });
 };
@@ -257,15 +201,11 @@ module.exports = {
   insertSubSequence,
   insertControlModule,
   getAllControlModuleTypes,
-  getConfigurationDataTest,
-  getAllConfigurationsTest,
   updateConfigurationData,
   insertNewConfiguration,
   createNewConfiguration,
-  updateConfigurationDataTest,
-  insertNewConfigurationTest,
   deleteConfig,
-  deleteConfigTest,
   getDatabaseSettings,
   updateDatabaseSettings,
+  getLoginData,
 };
