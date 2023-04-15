@@ -40,17 +40,6 @@ const deleteConfig = (request, response) => {
   queries.deleteConfig(request, response);
 };
 
-// Test queries
-const insertNewConfigurationTest = (request, response) => {
-  queries.insertNewConfigurationTest(request, response);
-};
-const updateConfigurationDataTest = (request, response) => {
-  queries.updateConfigurationDataTest(request, response);
-};
-const deleteConfigTest = (request, response) => {
-  queries.deleteConfigTest(request, response);
-};
-
 const updateDatabaseSettings = (request, response) => {
   queries.updateDatabaseSettings(request, response);
 };
@@ -58,12 +47,9 @@ const updateDatabaseSettings = (request, response) => {
 module.exports = {
   updateConfigurationData,
   insertNewConfiguration,
-  updateConfigurationDataTest,
-  insertNewConfigurationTest,
   createNewConfiguration,
   insertSequence,
   deleteConfig,
-  deleteConfigTest,
   insertControlModule,
   insertSubSequence,
   prepareSubSeqTable,
